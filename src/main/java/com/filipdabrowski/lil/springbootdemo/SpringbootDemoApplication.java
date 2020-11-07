@@ -1,6 +1,8 @@
 package com.filipdabrowski.lil.springbootdemo;
 
+import com.filipdabrowski.lil.springbootdemo.data.entity.Guest;
 import com.filipdabrowski.lil.springbootdemo.data.entity.Room;
+import com.filipdabrowski.lil.springbootdemo.data.repository.GuestRepository;
 import com.filipdabrowski.lil.springbootdemo.data.repository.RoomRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,19 @@ public class SpringbootDemoApplication {
 		@GetMapping
 		public Iterable<Room> getRooms() {
 			return this.roomRepository.findAll();
+		}
+	}
+
+
+	@RestController
+	@RequestMapping("/guests")
+	public class GuestController {
+		@Autowired
+		private GuestRepository guestRepository;
+		
+		@GetMapping
+		public Iterable<Guest> getRooms() {
+			return this.guestRepository.findAll();
 		}
 	}
 
